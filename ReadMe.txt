@@ -1,0 +1,1 @@
+This domain aims to facilitate a shopping experience, more precisely, at a Coffee Shop. Eventually, we'll be able to capture transcations done at the shop. This means the informations of the customers and the products will be captured. The user will be able to make orders online and add more ingredients to their beverage.
