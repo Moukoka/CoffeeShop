@@ -1,9 +1,11 @@
 package five.domain;
-
+import javax.persistence.Entity;
 /**
  * Created by Rosie on 2016/04/03.
  */
-public abstract class Coffee implements Beverage {
+
+@Entity
+public class Coffee extends Beverage {
     private Size size;
     private Ingredients ingredients;
 

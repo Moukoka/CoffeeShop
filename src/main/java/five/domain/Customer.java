@@ -1,59 +1,72 @@
 package five.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Created by Rosie on 2016/04/03.
  */
 
+@Entity
 public class Customer implements Serializable {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private  String name = null;
     private String cellNumber = null;
     private String email = null;
-
-   /* public Customer(String name, String cellNumber, String email) {
-        this.name = name;
-        this.cellNumber = cellNumber;
-        this.email = email;
-    }*/
+    @Embedded
+    private Address address;
 
     public Customer() {
     }
-     public void waitForOrder(){
+    /*public void waitForOrder(){
          System.out.println("Your order is being prepared");
      }
     public void collectOrder(){
         System.out.println("Smile, your order is ready");
 
+    }*/
+
+    public Long getId() {
+        return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getCellNumber() {
-        return cellNumber;
+    public Address getAddress() {
+        return address;
     }
 
     public String getEmail() {
         return email;
     }
 
+    public String getCellNumber() {
+        return cellNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     private Customer(Builder builder) {
         this.name = builder.name;
         this.cellNumber = builder.cellNumber;
         this.email = builder.email;
+        this.address = builder.ad;
     }
 
     public static class Builder{
         private String name;
         private String cellNumber;
         private String email;
-
+        private Address ad;
         public Builder (String value){
             this.name = value;
 
         }
+
         public Builder cellNumber(String value){
             this.cellNumber = value;
             return this;
@@ -63,10 +76,15 @@ public class Customer implements Serializable {
             return this;
         }
 
+        public Builder address(Address adr){
+            this.ad = adr;
+            return this;
+        }
         public Builder copy(Customer value) {
             this.name = value.name;
             this.cellNumber = value.cellNumber;
             this.email = value.email;
+            this.ad = value.address;
             return this;
         }
 
@@ -75,24 +93,5 @@ public class Customer implements Serializable {
         }
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        Customer customer = (Customer) o;
-
-        if (!getName().equals(customer.getName())) return false;
-        if (!getCellNumber().equals(customer.getCellNumber())) return false;
-        return getEmail().equals(customer.getEmail());
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getName().hashCode();
-        result = 31 * result + getCellNumber().hashCode();
-        result = 31 * result + getEmail().hashCode();
-        return result;
-    }
 }

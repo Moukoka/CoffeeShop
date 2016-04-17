@@ -1,13 +1,15 @@
 package five.domain;
 
+import java.util.List;
+
 /**
  * Created by Rosie on 2016/04/03.
  */
-public abstract class Tea implements Beverage {
+public class Tea extends Beverage {
     private Size size;
-    private Ingredients ingredients;
+    private List<Ingredients> ingredients;
 
-    public Tea(Size size, Ingredients ingredients) {
+    public Tea(Size size, List<Ingredients> ingredients) {
         this.size = size;
         this.ingredients = ingredients;
     }
@@ -21,8 +23,7 @@ public abstract class Tea implements Beverage {
         return size;
     }
 
-    public Ingredients getBaseIngredients() {
+    public List<Ingredients> getIngredients() {
         return ingredients;
     }
-
 }
